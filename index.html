@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>კობა — თხოვნების სამსახური</title>
+  <meta name="description" content="შხაპი გაფუჭდა? მანქანა არ იქოქება? დაწერე და კობა მოაგვარებს.">
+  <meta name="theme-color" content="#1b2a4a">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/koba.webp" type="image/webp">
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --ink: #1b2a4a;
+      --muted: #5b6785;
+      --accent: #e8492f;
+      --accent-dark: #c7381f;
+      --card: #ffffff;
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "Noto Sans Georgian", "BPG Arial", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 16px calc(32px + env(safe-area-inset-bottom));
+    }
+    .hero {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(27, 42, 74, .18);
+    }
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 640 / 854;
+      object-fit: cover;
+      object-position: center 30%;
+      max-height: 46vh;
+    }
+    .badge {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transform: rotate(-3deg);
+    }
+    h1 {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      margin: 24px 0 8px;
+    }
+    .lead { color: var(--muted); margin: 0 0 20px; }
+    form {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(27, 42, 74, .08);
+    }
+    label { display: block; font-weight: 700; margin-bottom: 8px; }
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      font: inherit;
+      font-size: 16px;
+      color: inherit;
+      padding: 12px;
+      border: 2px solid #e3e6ee;
+      border-radius: 14px;
+      background: #fbfcfe;
+    }
+    textarea:focus { outline: none; border-color: var(--ink); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+    .chip {
+      font: inherit;
+      font-size: .85rem;
+      color: var(--ink);
+      background: #eef1f7;
+      border: 0;
+      border-radius: 999px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .btn {
+      width: 100%;
+      font: inherit;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      background: var(--accent);
+      border: 0;
+      border-radius: 14px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+    }
+    .btn:hover { background: var(--accent-dark); }
+    .btn:active { transform: scale(.98); }
+    .error { color: var(--accent-dark); font-size: .9rem; margin: 8px 0 0; min-height: 1.35em; }
+    .done {
+      text-align: center;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px 16px;
+      box-shadow: 0 4px 16px rgba(27, 42, 74, .08);
+    }
+    .done h2 { margin: 0 0 8px; font-size: 1.4rem; }
+    .done blockquote {
+      margin: 16px 0 20px;
+      padding: 12px;
+      background: #eef1f7;
+      border-radius: 12px;
+      font-style: italic;
+      word-break: break-word;
+    }
+    .done p { color: var(--muted); margin: 0; }
+    footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 28px; }
+    [hidden] { display: none !important; }
+
+    @media (min-width: 768px) {
+      main { padding-top: 48px; }
+      h1 { font-size: 2.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <figure class="hero" style="margin:0">
+      <img src="assets/koba.webp" width="640" height="854" alt="კობა მზის სათვალით, მანქანაში, ხელით როკის ნიშანს აჩვენებს" fetchpriority="high">
+      <span class="badge">ოქროს ხელები</span>
+    </figure>
+
+    <h1>გამარჯობა! მე ვარ კობა.</h1>
+    <p class="lead">შხაპი გაფუჭდა? მანქანა არ იქოქება? დაწერე, რა გჭირდება და კობა მოაგვარებს.</p>
+
+    <form id="request-form" novalidate>
+      <label for="request">რა გჭირდება?</label>
+      <textarea id="request" name="request" maxlength="500" placeholder="მაგ.: შხაპის თავი შემიკეთებ?"></textarea>
+      <div class="chips" aria-label="მაგალითები">
+        <button type="button" class="chip">შხაპის თავი შემიკეთებ?</button>
+        <button type="button" class="chip">მანქანის შეკეთებაში დამეხმარები?</button>
+        <button type="button" class="chip">ნათურა გამოცვლი?</button>
+      </div>
+      <button type="submit" class="btn">გაგზავნა</button>
+      <p class="error" id="error" role="alert"></p>
+    </form>
+
+    <section class="done" id="done" hidden aria-live="polite">
+      <h2>მიღებულია!</h2>
+      <p>კობამ შენი თხოვნა მიიღო:</p>
+      <blockquote id="done-text"></blockquote>
+      <p>ჩაი დადგი, კობა უკვე გზაშია.</p>
+      <button type="button" class="btn" id="again" style="margin-top:20px">ახალი თხოვნა</button>
+    </section>
+
+    <footer>© კობა · ყველაფერი გამოსწორდება</footer>
+  </main>
+
+  <script>
+    const form = document.getElementById('request-form');
+    const input = document.getElementById('request');
+    const error = document.getElementById('error');
+    const done = document.getElementById('done');
+
+    document.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        input.value = chip.textContent;
+        error.textContent = '';
+        input.focus();
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const text = input.value.trim();
+      if (!text) {
+        error.textContent = 'ჯერ დაწერე, რა გჭირდება.';
+        input.focus();
+        return;
+      }
+      document.getElementById('done-text').textContent = text;
+      form.hidden = true;
+      done.hidden = false;
+    });
+
+    document.getElementById('again').addEventListener('click', () => {
+      input.value = '';
+      error.textContent = '';
+      done.hidden = true;
+      form.hidden = false;
+      input.focus();
+    });
+  </script>
+</body>
+</html>
